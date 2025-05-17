@@ -13,7 +13,7 @@ namespace System.Text.Yaml
                 throw new ArgumentNullException(nameof(yaml));
 
             YamlMappingNode root = new();
-            foreach (string line in yaml.Split('\n'))
+            foreach (string line in yaml.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 string trimmed = line.Trim();
                 if (trimmed.Length == 0 || trimmed.StartsWith("#"))
